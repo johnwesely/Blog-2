@@ -46,7 +46,7 @@ class AdminPostController extends Controller
     public function update(Post $post) {
         $attributes = request()->validate([
             'title' => ['required', 'Max:140', Rule::unique('posts', 'title')->ignore($post->id)],
-            'excerpt' => 'required|max: 300',
+            'excerpt' => 'required|max: 3000',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'thumbnail' => 'image'

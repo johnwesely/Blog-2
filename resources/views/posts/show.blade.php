@@ -8,7 +8,7 @@
                     Published <time>{{ $post->created_at->diffForHumans() }}</time>
                 </p>
 
-                <div class="flex items-center lg:justify-center text-sm mt-4">
+                <div class="flex lg:justify-center text-sm mt-4">
                     <img src="{{ asset('storage/' . $post->author->profile_image) }}" alt="profile image thumbnail"
                          width="100" class="rounded full">
                     <div class="ml-3 text-left">
