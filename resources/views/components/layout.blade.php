@@ -13,9 +13,9 @@
  </style>
 
  <!-- header -->
-<body style="font-family: Open Sans, sans-serif" class="bg-zinc-500">
+<body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
-        <nav class="md:flex md:justify-between md:items-center">
+        <nav class="md:flex md:justify-between md:items-center px-32">
             <div>
                 <a href="/">
                     <img src="/images/logo1.png" alt="LightningSnaps Logo" width="200" height="32">
