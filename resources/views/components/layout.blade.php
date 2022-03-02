@@ -56,7 +56,7 @@
                     </form>
                 @else
                     <a href="/register" class="text-xs font-bold uppercase mr-4">
-                        Register
+                        Register Please
                     </a>
                     <a href="/login" class="text-xs font-bold uppercase">
                         Log In    
