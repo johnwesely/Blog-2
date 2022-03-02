@@ -34,6 +34,8 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('post');
 
 Route::post('posts/{post:slug}/comments', [CommentController::class, 'store'])->middleware('auth');
+Route::get('comment/{comment:id}/edit', [CommentController::class, 'edit'])->middleware('auth');
+Route::patch('comment/{comment}', [CommentController::class, 'update'])->middleware('auth');
 
 Route::post('newsletter', NewsletterController::class);  // no method passed, default to __invoke
 

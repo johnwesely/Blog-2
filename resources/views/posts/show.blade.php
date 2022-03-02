@@ -10,7 +10,7 @@
 
                 <div class="flex lg:justify-center text-sm mt-4">
                     <img src="{{ asset('storage/' . $post->author->profile_image) }}" alt="profile image thumbnail"
-                         width="100" height="100" class="rounded full">
+                         width="100" height="100" class="rounded full flex-0">
                     <div class="ml-3 text-left">
                         <h5 class="font-bold">
                             <a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
