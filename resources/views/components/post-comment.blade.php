@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        @if ( auth()->user() && $comment->author->username = auth()->user()->username)
+        @if ( auth()->user() && $comment->author->username === auth()->user()->username)
         <div class="ml-auto">
             <a href="/comment/{{ $comment->id }}/edit">
                 <img src="https://img.icons8.com/material-outlined/24/000000/edit--v1.png" />
