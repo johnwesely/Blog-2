@@ -27,7 +27,7 @@
                     <x-dropdown>
                         <x-slot name="trigger">
                             <button class="text-xs font-bold uppercase">
-                                Hello and Welcome, {{ auth()->user()->name }}!
+                                Welcome, {{ auth()->user()->name }}!
                             </button>
                         </x-slot>
                         
@@ -56,7 +56,7 @@
                     </form>
                 @else
                     <a href="/register" class="text-xs font-bold uppercase mr-4">
-                        Register Please
+                        Register
                     </a>
                     <a href="/login" class="text-xs font-bold uppercase">
                         Log In    
