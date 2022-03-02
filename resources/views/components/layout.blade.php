@@ -13,7 +13,7 @@
  </style>
 
  <!-- header -->
-<body style="font-family: Open Sans, sans-serif">
+<body style="font-family: Open Sans, sans-serif" class="bg-zinc-500">
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
@@ -27,7 +27,7 @@
                     <x-dropdown>
                         <x-slot name="trigger">
                             <button class="text-xs font-bold uppercase">
-                                Welcome, {{ auth()->user()->name }}!
+                                Hello and Welcome, {{ auth()->user()->name }}!
                             </button>
                         </x-slot>
                         
