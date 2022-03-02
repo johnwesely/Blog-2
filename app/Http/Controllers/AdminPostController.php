@@ -29,7 +29,7 @@ class AdminPostController extends Controller
     {
         $attributes = request()->validate([
             'title' => 'required|max:140|unique:posts',
-            'excerpt' => 'required|max: 300',
+            'excerpt' => 'required|max: 1000',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'thumbnail' => 'required|image'
