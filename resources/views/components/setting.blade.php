@@ -23,6 +23,12 @@
                         New Post
                     </a>
                 </li>
+                <li>
+                    <a href="/comment/comments"
+                       class="{{ request()->is('comment/index') ? 'text-blue-500' : '' }}">
+                        Edit Comments 
+                    </a>
+                </li>
             </ul>
         </aside>
 

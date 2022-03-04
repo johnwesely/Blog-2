@@ -42,7 +42,17 @@ class CommentController extends Controller
 
         $comment->update($body);
 
-        return back()->with('success', 'Post Successfully Edited');
+        if (auth()->user()->is_admin) {
+            return back()->with('succes', 'Post Successfully Edited');
+        }
+
+        return redirect("posts/{$comment->post->slug}")->with('success', 'Post Successfully Edited');
+    }
+
+    public function index() {
+        return view('comment.index', [
+            'comments' => Comment::paginate(15)
+        ]);
     }
     
 }
