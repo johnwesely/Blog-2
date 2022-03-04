@@ -46,6 +46,8 @@ class Post extends Model
                 $query->where('username', $author)         // where author username matches user browser request
             )
         );
+
+        $query->where('published', true);
     }
 
 }

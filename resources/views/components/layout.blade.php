@@ -41,6 +41,9 @@
                         <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">
                             Manage Posts
                         </x-dropdown-item>
+                        <x-dropdown-item href="/comment/comments" :active="request()->is('comment/comments')">
+                            Manage Comments
+                        </x-dropdown-item>
                         @endcan
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">
                             Log Out

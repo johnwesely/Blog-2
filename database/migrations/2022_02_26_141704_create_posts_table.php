@@ -25,6 +25,7 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->string('thumbnail')->nullable();
             $table->unsignedBigInteger('view_count')->default(0);
+            $table->boolean('published')->default(false);
         });
     }
 

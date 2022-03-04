@@ -51,6 +51,7 @@ Route::middleware('can:admin')->group(function () {
     Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
     Route::get('admin/posts/{post:slug}/edit', [AdminPostController::class, 'edit']); 
     Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
+    Route::patch('admin/posts/{post}/toggle-published', [AdminPostController::class, 'togglePublished']);
     Route::get('admin/posts/create', [AdminPostController::class, 'create']);  
     Route::post('admin/posts', [AdminPostController::class, 'store']);
     Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy']);

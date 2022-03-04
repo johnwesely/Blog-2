@@ -25,7 +25,7 @@
                 </li>
                 <li>
                     <a href="/comment/comments"
-                       class="{{ request()->is('comment/index') ? 'text-blue-500' : '' }}">
+                       class="{{ request()->is('comment/comments') ? 'text-blue-500' : '' }}">
                         Edit Comments 
                     </a>
                 </li>

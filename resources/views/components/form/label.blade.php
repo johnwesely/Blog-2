@@ -1,5 +1,5 @@
-@props(['name'])
+@props(['name', 'label' => $name])
 
 <label for="{{ $name }}" class="block">
-    {{ ucwords($name)  }}
+    {{ ucwords($label)  }}
 </label>

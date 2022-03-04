@@ -13,7 +13,7 @@
             </div>
 
             <x-form.field>
-                <x-form.label name="category_id" />
+                <x-form.label name="category_id" label="Category ID" />
 
                 <select class="border border-gray-400 p-2 w-full" 
                         name="category_id" 
@@ -34,6 +34,16 @@
                 <x-form.validation-error name="category_id" />
             </x-form.field>
 
+            <x-form.field>
+                <div class="justify-start flex-nowrap">
+                    <x-form.label name="save_as_draft" label="Save as Draft" />
+                        <input class="border border-gray-200 p-2 w-full rounded-md mr-auto" 
+                               type="checkbox"
+                               name="save_as_draft" 
+                               {{ ! $post->published ? 'checked' : '' }} />
+                    <x-form.validation-error name="save_as_draft" />
+                </div>
+            </x-form.field> 
             <x-form.button text="update" />
         </form>
     </x-setting>

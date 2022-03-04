@@ -38,6 +38,7 @@ class AdminPostController extends Controller
         $attributes['user_id'] = auth()->id();
         $attributes['slug'] = preg_replace('/\s+/', '', request('title'));
         $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        $attributes['published'] = ! request()->input('save_as_draft');
 
         Post::create($attributes);
         return redirect('/')->with('success', 'Post Sucessful');
@@ -53,6 +54,7 @@ class AdminPostController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
+        $attributes['published'] = ! request()->input('save_as_draft');
 
         if (isset($attributes['thumbnail'])) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
@@ -61,6 +63,13 @@ class AdminPostController extends Controller
         $post->update($attributes);
 
         return back()->with('success', 'Post Successfully Updated!');
+    }
+
+    public function togglePublished(Post $post) {
+        $attributes['published'] = ! $post->published;
+        $post->update($attributes);
+
+        return back()->with('success', "Post " . ($post->published ? 'Published' : 'Unpublished'));
     }
 
     public function destroy(Post $post) {
