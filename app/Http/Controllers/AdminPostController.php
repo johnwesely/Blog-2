@@ -11,7 +11,7 @@ class AdminPostController extends Controller
     public function index() 
     {
         return view('admin.posts.index', [
-            'posts' => Post::latest()
+            'posts' => Post::all()
         ]);
     }
 
