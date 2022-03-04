@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->text('body');
             $table->string('thumbnail')->nullable();
+            $table->unsignedBigInteger('view_count')->default(0);
         });
     }
 

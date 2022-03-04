@@ -1,14 +1,17 @@
 <x-layout>
     <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
         <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
-            <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
+            <div class="col-span-4 lg:text-left lg:pt-14 mb-10">
                 <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" class="rounded-xl">
 
                 <p class="mt-4 block text-gray-400 text-xs">
                     Published <time>{{ $post->created_at->diffForHumans() }}</time>
                 </p>
+                <p class="block text-gray-400 text-xs">
+                    Viewed {{ $post->view_count }} times
+                </p>
 
-                <div class="flex lg:justify-center text-sm mt-4">
+                <div class="flex lg:justify-left text-sm mt-4">
                     <img src="{{ asset('storage/' . $post->author->profile_image) }}" alt="profile image thumbnail"
                          width="100" height="100" class="rounded full flex-0">
                     <div class="ml-3 text-left">

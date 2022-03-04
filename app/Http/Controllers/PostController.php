@@ -21,6 +21,9 @@ class PostController extends Controller
 
     public function show(Post $post) 
     {
+        ++$post->view_count;
+        $post->save();
+
         return view('posts.show', [
             'post' => $post    // make $post variable available to view
         ]);
