@@ -43,6 +43,10 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function favorites() {
+        return $this->hasMany(Favorite::class);
+    }
+
     public function setPasswordAttribute($password)    // called any time password attribute is set
     {
         $this->attributes['password'] = bcrypt($password);

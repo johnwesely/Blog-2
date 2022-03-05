@@ -35,7 +35,7 @@
             </x-form.field>
 
             <x-form.field>
-                <div class="justify-start flex-nowrap">
+                 <div class="flex justify-start flex-nowrap">
                     <x-form.label name="save_as_draft" label="Save as Draft" />
                         <input class="border border-gray-200 p-2 w-full rounded-md mr-auto" 
                                type="checkbox"
@@ -43,7 +43,7 @@
                                {{ ! $post->published ? 'checked' : '' }} />
                     <x-form.validation-error name="save_as_draft" />
                 </div>
-            </x-form.field> 
+            </x-form.field>
             <x-form.button text="update" />
         </form>
     </x-setting>

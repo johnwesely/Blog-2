@@ -25,6 +25,11 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
     public function scopeFilter($query, array $filters)   // call with Post::newQuery()->filter(), $query passed automatically by laravel 
     { 
         $query->when($filters['search'] ?? false , fn($query, $search) =>

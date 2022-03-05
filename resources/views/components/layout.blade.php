@@ -34,6 +34,11 @@
                         <x-dropdown-item href="/" :active="request()->is('/')">
                             Home
                         </x-dropdown-item>
+
+                        <x-dropdown-item href="/favorites" :active="request()->is('favorites')">
+                            Favorites
+                        </x-dropdown-item>
+
                         @can('admin')
                         <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">
                             New Post

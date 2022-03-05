@@ -11,14 +11,37 @@
                     Viewed {{ $post->view_count }} times
                 </p>
 
-                <div class="flex lg:justify-left text-sm mt-4">
+                <form method="POST" action="/favorites/{{ $post->id }}">
+                    @csrf
+                    @if(auth()->user()->favorites()
+                              ->where('user_id', auth()->user()->id)
+                              ->where('post_id', $post->id)
+                              ->exists())
+
+                    @method('DELETE')
+                    <button class="text-blue-500 text-s mt-2">
+                        Add to Favorites
+                    </button> 
+                    @else
+
+                    @method('POST')
+                    <button class="text-blue-500 text-s mt-2">
+                        Remove From Favorites
+                    </button> 
+
+                    @endif
+                </form>
+
+                <div class="flex lg:justify-left text-sm mt-6">
+                    <a href="/author={{ $post->author->username }}">
                     <img src="{{ asset('storage/' . $post->author->profile_image) }}" alt="profile image thumbnail"
                          width="100" height="100" class="rounded full flex-0">
                     <div class="ml-3 text-left">
                         <h5 class="font-bold">
-                            <a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
+                            {{ $post->author->name }}
                         </h5>
                     </div>
+                    </a>
                 </div>
             </div>
 

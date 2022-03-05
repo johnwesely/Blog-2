@@ -1,56 +1,42 @@
 <x-layout>
-    <x-setting heading="Manage Posts">
+    <div class="mx-auto flex flex-col items-center shrink-0">
+    <h1 class="mb-6 mt-10 text-2xl">
+        Your Favorites
+    </h1>
+    <div class="w-2/5 shrink-0">
+    <x-panel>
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach($posts as $post)
+                                @foreach($favorites as $favorite)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="ml-4">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    <a href="/posts/{{ $post->slug }}">
-                                                        {{ $post->title}}
-                                                    </a>
+                                                        {{ $favorite->post->title }}"
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Published <time>{{ $post->created_at->diffForHumans() }}</time>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/admin/posts/{{ $post->id }}/toggle-published">
+                                        <form method="POST" action="favorites/{{ $favorite->id }}">
                                             @csrf
                                             @method('PATCH')
                                             <button class="text-gray-400 text-xs">
-                                                @if($post->published)
-                                                    Unpublish
+                                                @if($favorite->read) 
+                                                Mark as Unread
                                                 @else
-                                                    Publish
+                                                Mark as Read
                                                 @endif
                                             </button>
                                         </form> 
-                                    </td> 
-
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="/admin/posts/{{ $post->slug }}/edit" class="text-blue-500 hover:text-indigo-900">
-                                            Edit
-                                        </a>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/admin/posts/{{ $post->id }}">
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <form method="POST" action="favorites/{{ $favorite->post->id }}">
                                             @csrf
                                             @method('DELETE')
                                             <button class="text-gray-400 text-xs">
@@ -66,5 +52,7 @@
                 </div>
             </div>
         </div>
-    </x-setting>
+        </div>
+    </x-panel>
+    </div>
 </x-layout>

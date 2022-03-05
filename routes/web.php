@@ -6,6 +6,8 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\FavoritesController;
 use Illuminate\Support\Facades\Route;
 use App\Services\Newsletter;
 
@@ -47,8 +49,13 @@ Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth')
 Route::get('login', [SessionController::class, 'create'])->middleware('guest');    // can only log in if guest
 Route::post('sessions', [SessionController::class, 'store'])->middleware('guest');
 
+Route::post('favorites/{post}', [FavoriteController::class, 'store'])->middleware('auth'); 
+Route::delete('favorites/{post}', [FavoriteController::class, 'destroy'])->middleware('auth');
+Route::get('favorites', [FavoriteController::class, 'index'])->middleware('auth'); // !!! add functionality to show number of favorites in dash 
+Route::patch('favorites/{favorite}', [FavoriteController:: class, 'toggleRead'])->middleware('auth');
+
 Route::middleware('can:admin')->group(function () {
-    Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
+    Route::get('admin/posts', [AdminPostController::class, 'index']);
     Route::get('admin/posts/{post:slug}/edit', [AdminPostController::class, 'edit']); 
     Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
     Route::patch('admin/posts/{post}/toggle-published', [AdminPostController::class, 'togglePublished']);

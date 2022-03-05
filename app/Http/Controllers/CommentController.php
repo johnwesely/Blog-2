@@ -43,7 +43,7 @@ class CommentController extends Controller
         $comment->update($body);
 
         if (auth()->user()->is_admin) {
-            return back()->with('succes', 'Post Successfully Edited');
+            return redirect("comment/comments")->with('success', 'Post Successfully Edited');
         }
 
         return redirect("posts/{$comment->post->slug}")->with('success', 'Post Successfully Edited');
@@ -51,7 +51,7 @@ class CommentController extends Controller
 
     public function index() {
         return view('comment.index', [
-            'comments' => Comment::paginate(15)
+            'comments' => Comment::with('author')->with('post')->get()
         ]);
     }
     
