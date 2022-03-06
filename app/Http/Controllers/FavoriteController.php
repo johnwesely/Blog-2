@@ -19,7 +19,7 @@ class FavoriteController extends Controller
 
     public function toggleRead(Favorite $favorite)
     {
-        $attributes['read'] = ! $favorite->read;
+        $attributes['has_read'] = ! $favorite->has_read;
         $favorite->update($attributes);
 
         return back()->with('success', 

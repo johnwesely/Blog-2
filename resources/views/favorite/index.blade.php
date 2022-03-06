@@ -27,7 +27,7 @@
                                             @csrf
                                             @method('PATCH')
                                             <button class="text-gray-400 text-xs">
-                                                @if($favorite->read) 
+                                                @if($favorite->has_read) 
                                                 Mark as Unread
                                                 @else
                                                 Mark as Read

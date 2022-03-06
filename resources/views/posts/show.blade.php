@@ -11,6 +11,7 @@
                     Viewed {{ $post->view_count }} times
                 </p>
 
+                @auth
                 <form method="POST" action="/favorites/{{ $post->id }}">
                     @csrf
                     @if(auth()->user()->favorites()
@@ -31,6 +32,7 @@
 
                     @endif
                 </form>
+                @endauth
 
                 <div class="flex lg:justify-left text-sm mt-6">
                     <a href="/author={{ $post->author->username }}">

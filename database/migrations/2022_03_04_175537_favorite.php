@@ -15,7 +15,7 @@ class Favorite extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->boolean('read')->default(false);
+            $table->boolean('has_read')->default(false);
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
             $table->foreignId('user_id');
