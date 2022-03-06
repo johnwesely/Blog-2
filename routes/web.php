@@ -45,30 +45,21 @@ Route::post('newsletter', NewsletterController::class);  // no method passed, de
 Route::get('register', [RegistrationController::class, 'create'])->middleware('guest');
 Route::post('register', [RegistrationController::class, 'store'])->middleware('guest');
 
-Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');  // can only log out if auth
 Route::get('login', [SessionController::class, 'create'])->middleware('guest');    // can only log in if guest
 Route::post('sessions', [SessionController::class, 'store'])->middleware('guest');
+Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');  // can only log out if auth
 
+Route::get('favorites', [FavoriteController::class, 'index'])->middleware('auth'); // !!! add functionality to show number of favorites in dash 
 Route::post('favorites/{post}', [FavoriteController::class, 'store'])->middleware('auth'); 
 Route::delete('favorites/{post}', [FavoriteController::class, 'destroy'])->middleware('auth');
-Route::get('favorites', [FavoriteController::class, 'index'])->middleware('auth'); // !!! add functionality to show number of favorites in dash 
 Route::patch('favorites/{favorite}', [FavoriteController:: class, 'toggleRead'])->middleware('auth');
 
 Route::middleware('can:admin')->group(function () {
     Route::get('admin/posts', [AdminPostController::class, 'index']);
-    Route::get('admin/posts/{post:slug}/edit', [AdminPostController::class, 'edit']); 
-    Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
-    Route::patch('admin/posts/{post}/toggle-published', [AdminPostController::class, 'togglePublished']);
     Route::get('admin/posts/create', [AdminPostController::class, 'create']);  
     Route::post('admin/posts', [AdminPostController::class, 'store']);
+    Route::get('admin/posts/{post:slug}/edit', [AdminPostController::class, 'edit']); 
+    Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
     Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy']);
+    Route::patch('admin/posts/{post}/toggle-published', [AdminPostController::class, 'togglePublished']);
 });
-
-/*
-Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
-Route::get('admin/posts/{post:slug}/edit', [AdminPostController::class, 'edit']); // !!! add  create and store to admin organize
-Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
-Route::get('admin/posts/create', [AdminPostController::class, 'create']);  // !!! add roles to database
-Route::post('admin/posts', [AdminPostController::class, 'store']);
-Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy']);
-*/

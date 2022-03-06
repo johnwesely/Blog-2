@@ -14,12 +14,7 @@ class AdminPostController extends Controller
             'posts' => Post::all()
         ]);
     }
-
-    public function edit(Post $post) 
-    {
-        return view('admin.posts.edit', ['post' => $post]);
-    }
-
+    
     public function create() 
     {
         return view('admin.posts.create');
@@ -32,7 +27,7 @@ class AdminPostController extends Controller
             'excerpt' => 'required|max: 3000',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
-            'thumbnail' => 'required|image'
+            'thumbnail' => 'required|image|dimensions:ratio=1/1'
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -44,13 +39,19 @@ class AdminPostController extends Controller
         return redirect('/')->with('success', 'Post Sucessful');
     }
 
-    public function update(Post $post) {
+    public function edit(Post $post) 
+    {
+        return view('admin.posts.edit', ['post' => $post]);
+    }
+
+    public function update(Post $post) 
+    {
         $attributes = request()->validate([
             'title' => ['required', 'Max:140', Rule::unique('posts', 'title')->ignore($post->id)],
             'excerpt' => 'required|max: 3000',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
-            'thumbnail' => 'image'
+            'thumbnail' => 'image|dimensions:ratio=1/1'
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -65,6 +66,11 @@ class AdminPostController extends Controller
         return back()->with('success', 'Post Successfully Updated!');
     }
 
+       public function destroy(Post $post) {
+        $post->delete();
+        return back()->with('success', 'Down the Memory Hole is Goes');
+    }
+
     public function togglePublished(Post $post) {
         $attributes['published'] = ! $post->published;
         $post->update($attributes);
@@ -72,8 +78,4 @@ class AdminPostController extends Controller
         return back()->with('success', "Post " . ($post->published ? 'Published' : 'Unpublished'));
     }
 
-    public function destroy(Post $post) {
-        $post->delete();
-        return back()->with('success', 'Down the Memory Hole is Goes');
-    }
 }

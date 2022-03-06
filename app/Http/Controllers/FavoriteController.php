@@ -17,15 +17,6 @@ class FavoriteController extends Controller
         ]);
     }
 
-    public function toggleRead(Favorite $favorite)
-    {
-        $attributes['has_read'] = ! $favorite->has_read;
-        $favorite->update($attributes);
-
-        return back()->with('success', 
-                            "{$favorite->post->title} marked as ". ($favorite->read ? 'read' : 'unread'));
-    }
-
     public function store(Post $post)
     {
 
@@ -53,5 +44,15 @@ class FavoriteController extends Controller
         $favorite->first()->delete();
         return back()->with('success', 'Post Removed From Favorites');
     }
+
+    public function toggleRead(Favorite $favorite)
+    {
+        $attributes['has_read'] = ! $favorite->has_read;
+        $favorite->update($attributes);
+
+        return back()->with('success', 
+                            "{$favorite->post->title} marked as ". ($favorite->read ? 'read' : 'unread'));
+    }
+
 
 }

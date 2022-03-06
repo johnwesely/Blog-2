@@ -5,7 +5,8 @@
             <x-form.input name="title" label="Title" required />
             <x-form.text-area name="excerpt" label="Excerpt" />
             <x-form.text-area name="body" label="Body" />
-            <x-form.input name="thumbnail" type="file" label="Profile Image" />
+            <x-form.input name="thumbnail" type="file" label="Post Image: Must be Square" />
+
 
             <x-form.field>
                 <x-form.label name="category_id" label="Category ID" />

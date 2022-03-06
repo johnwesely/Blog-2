@@ -12,7 +12,7 @@
                 <x-form.input name="username" required/>
                 <x-form.input name="name" required/>
                 <x-form.input name="email" type="email" required/>
-                <x-form.input name="profile_image" type="file"/>
+                <x-form.input name="profile_image"  label="Profile Image: Must be Square" type="file"/>
                 <x-form.input name="password" type="password" required/>
                 <x-form.button text="submit" />
 

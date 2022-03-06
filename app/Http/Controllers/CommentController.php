@@ -8,6 +8,12 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
+    public function index() {
+        return view('comment.index', [
+            'comments' => Comment::with('author')->with('post')->get()
+        ]);
+    }
+
     public function store(Post $post)
     {
         // validate
@@ -49,10 +55,6 @@ class CommentController extends Controller
         return redirect("posts/{$comment->post->slug}")->with('success', 'Post Successfully Edited');
     }
 
-    public function index() {
-        return view('comment.index', [
-            'comments' => Comment::with('author')->with('post')->get()
-        ]);
-    }
+    
     
 }

@@ -20,7 +20,7 @@ class RegistrationController extends Controller
             'username' => 'required|min:3|max:140|unique:users,username',
             'email' => 'required|email|max:140|unique:users,email',
             'password' => 'required|min:8|max:20',
-            'profile_image' => 'required|image'
+            'profile_image' => 'required|image|dimensions:ratio=1/1'
         ]);
 
         $attributes['profile_image'] = request()->file('profile_image')->store('profile_images');
