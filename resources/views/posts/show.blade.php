@@ -14,7 +14,7 @@
                 @auth
                 <form method="POST" action="/favorites/{{ $post->id }}">
                     @csrf
-                    @if(auth()->user()->favorites()
+                    @if(! auth()->user()->favorites()
                               ->where('user_id', auth()->user()->id)
                               ->where('post_id', $post->id)
                               ->exists())
