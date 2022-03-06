@@ -14,20 +14,20 @@
                 @auth
                 <form method="POST" action="/favorites/{{ $post->id }}">
                     @csrf
-                    @if(! auth()->user()->favorites()
+                    @if(auth()->user()->favorites()
                               ->where('user_id', auth()->user()->id)
                               ->where('post_id', $post->id)
                               ->exists())
 
                     @method('DELETE')
                     <button class="text-blue-500 text-s mt-2">
-                        Add to Favorites
+                        Remove from Favorites
                     </button> 
                     @else
 
                     @method('POST')
                     <button class="text-blue-500 text-s mt-2">
-                        Remove From Favorites
+                        Add to Favorites
                     </button> 
 
                     @endif
